@@ -47,7 +47,7 @@ The overlay is added by printing a div tag with some inline styles to the Wordpr
   <img src="assets/screenshot-2.png" height="400" />
 </p>
 
-2. This is how the homepage looks with the plugin activated and the percentage set to 42%. 
+2. This is how the homepage looks with the plugin activated and the settings set to the values visible in the last screenshot.
 
 ### Changelog
 

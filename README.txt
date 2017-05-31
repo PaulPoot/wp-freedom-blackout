@@ -43,7 +43,7 @@ The overlay is added by printing a div tag with some inline styles to the Wordpr
 == Screenshots ==
 
 1. This is the settings menu. Here you can change how much of the website is hidden and edit the message that is displayed.
-2. This is how the homepage looks with the plugin activated and the percentage set to 42%. 
+2. This is how the homepage looks with the plugin activated and the settings set to the values visible in the last screenshot.
 
 == Changelog ==
 
