@@ -130,27 +130,48 @@ class Freedom_Blackout_Admin {
 		$valid = array();
 
 		// Sanitize values
-		$valid['cover_percentage'] = $this->sanitize_percentage($input['cover_percentage']);
+		$valid['progress_towards_goal'] = $this->sanitize_int($input['progress_towards_goal']);
+		$valid['goal'] = $this->sanitize_int($input['goal']);
+		$valid['goal_text'] = sanitize_text_field($input['goal_text']);
+		$valid['cover_percentage'] = $this->calculate_cover_percentage($valid['progress_towards_goal'], $valid['goal']);
 		$valid['cover_message'] = sanitize_text_field($input['cover_message']);
 		$valid['cover_url'] = esc_url($input['cover_url']);
+		$valid['cover_image'] = esc_url($input['cover_image']);
 
 		return $valid;
 
 	}
 
 	/**
-	* Check if input is percentage, otherwise return 100
+	* Calculate percentage of the website that's hidden'
 	*
-	* @since    1.0.0
+	* @since    1.1.0
 	*/
 
-	private function sanitize_percentage($input) {
+	private function calculate_cover_percentage($progress, $goal) {
 
-		// Check if input is an integer and if it's a value from 0 to 100
-		if( filter_var($input, FILTER_VALIDATE_INT) && ($input >= 0 && $input <= 100) ) {
+		$percentage = 100 - (($progress / $goal) * 100);
+
+		if( $percentage > 100 ) {
+			$percentage = 100;
+		} elseif( $percentage < 0 ) {
+			$percentage = 0;
+		}
+
+		return $percentage;
+
+	}
+
+	/**
+	* Check if input is int
+	*
+	* @since    1.1.0
+	*/
+
+	private function sanitize_int($input) {
+
+		if( filter_var($input, FILTER_VALIDATE_INT) ) {
 			return $input;
-		} else {
-			return 100;
 		}
 
 	}

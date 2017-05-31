@@ -16,7 +16,7 @@
  * Plugin Name:       Freedom Blackout
  * Plugin URI:        https://github.com/PaulPoot/freedom-blackout
  * Description:       Plugin that (partially) hides your website based on a variable.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Paul Poot
  * Author URI:        https://www.paulpoot.eu
  * License:           GPL-3.0
