@@ -109,7 +109,7 @@
             <legend class="screen-reader-text"><span><?php _e('Enter a message that should be displayed on the overlay', $this->plugin_name); ?></span></legend>
             <label for="<?php echo $this->plugin_name; ?>-cover_message">
                 <h4><?php esc_attr_e('Message to display on the overlay', $this->plugin_name); ?></h4>
-                <textarea class="regular-text" id="<?php echo $this->plugin_name; ?>-cover_message" name="<?php echo $this->plugin_name; ?>[cover_message]" value="<?php if(!empty($cover_message)) { echo $cover_message; } ?>"></textarea>
+                <textarea class="regular-text" id="<?php echo $this->plugin_name; ?>-cover_message" name="<?php echo $this->plugin_name; ?>[cover_message]"><?php if(!empty($cover_message)) { echo $cover_message; } ?></textarea>
             </label>
         </fieldset>
 
