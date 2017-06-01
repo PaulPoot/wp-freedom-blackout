@@ -70,8 +70,11 @@ class Freedom_Blackout_Public {
 		$cover_message = $options['cover_message'];
 		$cover_url = $options['cover_url'];
 		$cover_image = $options['cover_image'];
+		$excluded_pages = $options['excluded_pages'];
 
-		if( $cover_percentage > 0 ) {		
+		$page_id = get_the_ID();
+
+		if( $cover_percentage > 0 && !in_array($page_id, $excluded_pages) ) {		
 			?>
 				<a style="color: #fff;" href="<?php echo $cover_url ?>">
 					<div style="position: fixed; bottom: 0; z-index: 99999; width: 100vw; height: <?php echo $cover_percentage; ?>vh; background-color: #000; align-items: center; justify-content: center; flex-direction: column; overflow-y: scroll;">

@@ -138,6 +138,7 @@ class Freedom_Blackout_Admin {
 		$valid['cover_message'] = sanitize_text_field($input['cover_message']);
 		$valid['cover_url'] = esc_url($input['cover_url']);
 		$valid['cover_image'] = esc_url($input['cover_image']);
+		$valid['excluded_pages'] = $input['excluded_pages'];
 
 		return $valid;
 

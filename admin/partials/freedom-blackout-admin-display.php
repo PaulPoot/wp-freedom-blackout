@@ -57,6 +57,10 @@
                 echo '<div class="notice notice-info"><p>' . $cover_percentage . '% of the website is currently hidden.</p></div>';
             }
 
+            if( isset($options['excluded_pages']) ) {
+                $excluded_pages = $options['excluded_pages'];
+            }
+
             settings_fields($this->plugin_name);
             do_settings_sections($this->plugin_name);
         ?>
@@ -105,7 +109,7 @@
             <legend class="screen-reader-text"><span><?php _e('Enter a message that should be displayed on the overlay', $this->plugin_name); ?></span></legend>
             <label for="<?php echo $this->plugin_name; ?>-cover_message">
                 <h4><?php esc_attr_e('Message to display on the overlay', $this->plugin_name); ?></h4>
-                <input type="text" class="regular-text" id="<?php echo $this->plugin_name; ?>-cover_message" name="<?php echo $this->plugin_name; ?>[cover_message]" value="<?php if(!empty($cover_message)) { echo $cover_message; } ?>"/>
+                <textarea class="regular-text" id="<?php echo $this->plugin_name; ?>-cover_message" name="<?php echo $this->plugin_name; ?>[cover_message]" value="<?php if(!empty($cover_message)) { echo $cover_message; } ?>"></textarea>
             </label>
         </fieldset>
 
@@ -125,6 +129,27 @@
                     <img src="<?php echo $cover_image; ?>" width="100" height="100" style="background-color: #000" /><br>
                 <?php } ?>
                 <input type="url" class="regular-text" id="<?php echo $this->plugin_name; ?>-cover_image" name="<?php echo $this->plugin_name; ?>[cover_image]" value="<?php if(!empty($cover_image)) { echo $cover_image; } ?>"/>
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend class="screen-reader-text"><span><?php _e('Select the pages that should never be hidden by the cover', $this->plugin_name); ?></span></legend>
+            <label for="<?php echo $this->plugin_name; ?>-excluded_pages[]">
+                <h4><?php esc_attr_e('Select the pages that should never be hidden by the cover', $this->plugin_name); ?></h4>
+                <p>You can select multiple pages by holding the Ctrl key (Windows) or the Command key (OS X) while clicking on the pages below.</p>
+                <select name="<?php echo $this->plugin_name; ?>[excluded_pages][]" multiple>
+                    <?php
+                    if( $pages = get_pages() ){
+                        foreach( $pages as $page ) {
+                            echo '<option value="' . $page->ID . '" ';
+                            if( in_array( $page->ID, $excluded_pages ) ) {
+                                echo 'selected="selected"';
+                            };
+                            echo '>' . $page->post_title . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
             </label>
         </fieldset>
 
