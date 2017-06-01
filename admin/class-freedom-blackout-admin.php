@@ -132,11 +132,13 @@ class Freedom_Blackout_Admin {
 		// Sanitize values
 		$valid['progress_towards_goal'] = $this->sanitize_int($input['progress_towards_goal']);
 		$valid['goal'] = $this->sanitize_int($input['goal']);
-		$valid['goal_text'] = sanitize_text_field($input['goal_text']);
+		$valid['goal_text'] = esc_textarea($input['goal_text']);
+		$valid['show_progress'] = (isset($input['show_progress']) && !empty($input['show_progress'])) ? 1 : 0;
 		$valid['cover_percentage'] = $this->calculate_cover_percentage($valid['progress_towards_goal'], $valid['goal']);
 		$valid['cover_message'] = sanitize_text_field($input['cover_message']);
 		$valid['cover_url'] = esc_url($input['cover_url']);
 		$valid['cover_image'] = esc_url($input['cover_image']);
+		$valid['excluded_pages'] = $input['excluded_pages'];
 
 		return $valid;
 

@@ -65,18 +65,28 @@ class Freedom_Blackout_Public {
 		$progress_towards_goal = $options['progress_towards_goal'];
 		$goal = $options['goal'];
 		$goal_text = $options['goal_text'];
+		$show_progress = $options['show_progress'];
 		$cover_percentage = $options['cover_percentage'];
 		$cover_message = $options['cover_message'];
 		$cover_url = $options['cover_url'];
 		$cover_image = $options['cover_image'];
+		$excluded_pages = $options['excluded_pages'];
 
-		if( $cover_percentage > 0 ) {		
+		$page_id = get_the_ID();
+
+		if( $cover_percentage > 0 && !in_array($page_id, $excluded_pages) ) {		
 			?>
-				<a style="color: #fff; padding: 8px;" href="<?php echo $cover_url ?>">
-					<div style="width: 100vw; height: <?php echo $cover_percentage; ?>vh; background-color: #000; z-index: 99999; position: fixed; bottom: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; overflow: hidden;">
-						<p style="color: #fff; padding: 16px 16px 0; margin: 0;"><?php echo $cover_message ?></p>
-						<p style="color: #fff; padding: 16px; margin: 0;"><?php echo $progress_towards_goal . ' / ' . $goal . ' ' . $goal_text; ?></p>
-						<img src="<?php echo $cover_image ?>" width="100" height="100"/>
+				<a style="color: #fff;" href="<?php echo $cover_url ?>">
+					<div style="position: fixed; bottom: 0; z-index: 99999; width: 100vw; height: <?php echo $cover_percentage; ?>vh; background-color: #000; align-items: center; justify-content: center; flex-direction: column; overflow-y: scroll;">
+						<div class="row" style="padding-bottom: 16px; display: flex; min-height: 100%; align-items: center; justify-content: center; flex-direction: column;">
+							<p style="color: #fff; padding: 16px 16px 8px; margin: 0;"><?php echo $cover_message ?></p>
+							
+							<?php if( $show_progress ) { ?>
+								<p style="color: #fff; padding: 8px 16px; margin: 0;"><?php echo $progress_towards_goal . ' / ' . $goal . ' ' . $goal_text; ?></p>
+							<?php } ?>
+
+							<img style="padding-top: 24px;" src="<?php echo $cover_image ?>" width="100" height="100"/>
+						</div>
 					</div>
 				</a>
 			<?php

@@ -47,6 +47,11 @@ The overlay is added by printing a div tag with some inline styles to the Wordpr
 
 == Changelog ==
 
+= 1.2 = 
+* Added checkbox to show/hide progress on overlay
+* Use Foundation .row to make design more cohesive with client's website.
+* Excluding pages from being hidden is now possible.
+
 = 1.1 =
 * Added more customisation.
 * Changed how cover percentage is calculated.
