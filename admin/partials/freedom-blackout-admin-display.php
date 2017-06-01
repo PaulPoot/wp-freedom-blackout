@@ -36,6 +36,10 @@
                 $goal_text = $options['goal_text'];
             }
 
+            if( isset($options['show_progress']) ) {
+                $show_progress = $options['show_progress'];
+            }
+
             if( isset($options['cover_message']) ) {
                 $cover_message = $options['cover_message'];
             }
@@ -82,6 +86,17 @@
             </label>
         </fieldset>
 
+        <br>
+
+        <fieldset>
+            <legend class="screen-reader-text"><span>Show progress on overlay</span></legend>
+            <label for="<?php echo $this->plugin_name; ?>-show_progress">
+                <input type="checkbox" id="<?php echo $this->plugin_name; ?>-show_progress" name="<?php echo $this->plugin_name; ?>[show_progress]" value="1" <?php if( isset($show_progress) ) { checked($show_progress, 1); } ?> />
+                <span><?php esc_attr_e('Show progress on overlay', $this->plugin_name); ?><span>
+            </label>
+        </fieldset>
+
+        <br>
         <hr>
 
         <h2><?php esc_attr_e('Overlay', $this->plugin_name); ?></h2>
