@@ -142,7 +142,7 @@
                     if( $pages = get_pages() ){
                         foreach( $pages as $page ) {
                             echo '<option value="' . $page->ID . '" ';
-                            if( in_array( $page->ID, $excluded_pages ) ) {
+                            if( isset($excluded_pages) && in_array( $page->ID, $excluded_pages ) ) {
                                 echo 'selected="selected"';
                             };
                             echo '>' . $page->post_title . '</option>';
